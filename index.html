@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshada Yadav- Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color:whitesmoke;
+        }
+        .container {
+            background-color:whitesmoke;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 6px double black;
+        }
+        ul {
+            display: flex;
+        }
+        li {
+            margin-right: 30px;
+            list-style-type: circle;
+        }
+        .header {
+            text-align: center;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .header h1 {
+            margin-top: 10px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            margin-bottom: 10px;
+            color: #333;
+            background-color: skyblue;
+            padding: 5px;
+        }
+        .skills ul, .experience ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .skills li, .experience li {
+            background-color: skyblue;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact a {
+            display: block;
+            margin: 5px 0;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color:green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img id="profile-pic" src="https://static.vecteezy.com/system/resources/previews/032/176/125/original/business-avatar-profile-black-icon-woman-of-user-flat-symbol-in-trendy-filled-style-isolated-on-female-profile-people-diverse-face-for-social-network-or-web-vector.jpg" alt="Profile Picture">
+            <h1 id="name">Harshada Yadav</h1>
+            <p id="profession">Student</p>
+        </div>
+
+        <div class="section About">
+            <h2>About Me</h2>
+            <p id="about-text">I am currently studying at D.Y.Patil School of Engineering and Management with a degree in Computer Science and Engineering. I also like reading books and have an interest in computer coding. My academic and project experiences have equipped me with a solid foundation in both front-end and back-end technologies.</p>
+        </div>
+
+        <div class="section Skills">
+            <h2>Skills</h2>
+            <ul id="skills-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>C</li>
+                <li>C++</li>
+                <li>Python</li>
+            </ul>
+        </div>
+
+        <div class="section Experience">
+            <h2>Experience</h2>
+            <p id="experience-text">Self-directed learning and proactive goal setting and management. Greater collaboration with teachers and other students.</p>
+        </div>
+
+        <div class="section contact">
+            <h2>Contact Me</h2>
+            <p>Email: <a href="mailto:harshadayadav555@gmail.com">harshadayadav555@gmail.com</a></p>
+            <p>Contact No: 8767812585</p>
+        </div>
+
+        <button onclick="updateBio()">Update Bio</button>
+    </div>
+
+    <script>
+        function collectBio() {
+            let name = prompt("Enter your name:");
+            while (!name) {
+                alert("Name cannot be empty!");
+                name = prompt("Enter your name:");
+            }
+
+            let profession = prompt("Enter your profession:");
+            while (!profession) {
+                alert("Profession cannot be empty!");
+                profession = prompt("Enter your profession:");
+            }
+
+            let aboutText = prompt("Tell us about yourself:");
+            while (!aboutText) {
+                alert("About information cannot be empty!");
+                aboutText = prompt("Tell us about yourself:");
+            }
+
+            let skills = prompt("Enter your skills:");
+            while (!skills) {
+                alert("Skills cannot be empty!");
+                skills = prompt("Enter your skills:");
+            }
+
+            let imageURL = prompt("Enter a URL for your profile picture:");
+            while (!imageURL) {
+                alert("Profile picture URL cannot be empty!");
+                imageURL = prompt("Enter a URL for your profile picture:");
+            }
+
+            let bio = {
+                name: name,
+                profession: profession,
+                aboutText: aboutText,
+                skills: skills.split(','),
+                imageURL: imageURL
+            };
+
+            return bio;
+        }
+
+        function displayBio(bio) {
+            document.getElementById("name").innerText = bio.name;
+            document.getElementById("profession").innerText = bio.profession;
+            document.getElementById("about-text").innerText = bio.aboutText;
+            document.getElementById("profile-pic").src = bio.imageURL;
+
+            let skillsList = document.getElementById("skills-list");
+            skillsList.innerHTML = "";
+            bio.skills.forEach(skill => {
+                let li = document.createElement("li");
+                li.innerText = skill;
+                skillsList.appendChild(li);
+            });
+
+            console.log("User's Bio: ", bio);
+            alert(`Name: ${bio.name}\nProfession: ${bio.profession}\nAbout: ${bio.aboutText}\nSkills: ${bio.skills.join(", ")}`);
+        }
+
+        function updateBio() {
+            let bio = collectBio();
+            displayBio(bio);
+        }
+    </script>
+
+</body>
+</html>
